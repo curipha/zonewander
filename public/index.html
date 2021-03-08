@@ -297,7 +297,7 @@ const build = function(url) {
         const dt = document.createElement('dt');
 
         const a = document.createElement('a');
-        a.setAttribute('href', Function('"use strict";return ( (hostname, href, href_noencode) => `' + entry.format + '`);')()(hostname, href, href_noencode));
+        a.href = Function('"use strict";return ((hostname, href, href_noencode) => `' + entry.format + '`);')()(hostname, href, href_noencode);
         a.textContent = entry.title;
 
         dt.appendChild(a);
