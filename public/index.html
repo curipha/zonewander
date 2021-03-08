@@ -299,6 +299,8 @@ const build = function(url) {
         const a = document.createElement('a');
         a.href = Function('"use strict";return ((hostname, href, href_noencode) => `' + entry.format + '`);')()(hostname, href, href_noencode);
         a.textContent = entry.title;
+        a.rel = 'noreferrer';
+        a.referrerPolicy = 'no-referrer';
 
         dt.appendChild(a);
 
