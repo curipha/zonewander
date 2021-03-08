@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>zonewander</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" />
+<style type="text/css">
+:root {
+  font-size: 20px;
+
+  --width: 88vw;
+
+  --color-text: #333;
+  --color-bg: #f3f3f3;
+  --color-anchor-text: #008c15; /* 2426C */
+
+  --color-head-text: #c2e189; /* 365C */
+  --color-head-bg: #13322b; /* 627C */
+
+  --color-query-text: #fff;
+  --color-query-border: var(--color-head-text);
+  --color-query-placeholder-text: rgba(255,255,255,0.6);
+
+  --color-card-title-text: #fff;
+  --color-card-title-bg: #025f1d; /* 2427C */
+  --color-card-bg: #fff;
+  --color-card-term-text: #333;
+  --color-card-desc-text: #666;
+}
+
+* {
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: 1;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: initial;
+}
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  padding: 0 calc((100vw - var(--width)) / 2);
+  background-color: var(--color-head-bg);
+}
+
+h1 {
+  color: var(--color-head-text);
+  font-size: 2rem;
+
+  margin-right: 6vw;
+}
+h1 a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+#query {
+  flex: 1;
+
+  color: var(--color-query-text);
+  background-color: transparent;
+
+  font-size: 1rem;
+
+  margin: 1px 0;
+  min-width: 60vw;
+  border-bottom: 1px dotted var(--color-query-border);
+}
+::placeholder {
+  color: var(--color-query-placeholder-text);
+}
+
+main {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+  /* grid-template-rows: masonry; */
+
+  margin: 1rem auto;
+  width: var(--width);
+}
+
+section {
+  background-color: var(--color-card-bg);
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3),
+              0 1px 3px 1px rgba(0,0,0,0.15);
+}
+
+h2 {
+  color: var(--color-card-title-text);
+  background-color: var(--color-card-title-bg);
+
+  font-size: 1.2rem;
+
+  padding: 3em 0 1rem 1rem;
+  width: 100%;
+}
+
+dl {
+  margin: 1rem;
+}
+dt {
+  color: var(--color-card-term-text);
+
+  margin-bottom: 0.5em;
+}
+dd {
+  color: var(--color-card-desc-text);
+  font-size: 0.8rem;
+  line-height: 1.5;
+
+  margin-bottom: 2em;
+}
+
+a {
+  color: var(--color-anchor-text);
+}
+</style>
+<script type="text/javascript">
+'use strict';
+
+const source = [
+/*
+  {
+    category: '',
+    entries: [
+      {
+        title: '',
+        description: '',
+        format: '',
+      },
+    ],
+  },
+*/
+  {
+    category: 'Network',
+    entries: [
+      {
+        title: 'CHECK-HOST',
+        description: 'Availability check and location estimation location of host',
+        format: 'https://check-host.net/ip-info?host=${hostname}',
+      },
+      {
+        title: 'Hurricane Electric BGP Toolkit',
+        description: 'Check DNS records and IP information',
+        format: 'https://bgp.he.net/dns/${hostname}',
+      },
+      {
+        title: 'Netcraft Site Report',
+        description: 'Find out the hosting infrastructure and technologies',
+        format: 'https://sitereport.netcraft.com/?url=${hostname}',
+      },
+    ],
+  },
+  {
+    category: 'SSL/TLS',
+    entries: [
+      {
+        title: 'crt.sh',
+        description: 'Certificate Transparency log search',
+        format: 'https://crt.sh/?q=${hostname}',
+      },
+      {
+        title: 'Qualys SSL Server Test',
+        description: 'Perform a deep analysis of the configuration of SSL web server',
+        format: 'https://www.ssllabs.com/ssltest/analyze.html?d=${hostname}',
+      },
+    ],
+  },
+  {
+    category: 'Web cache (Retrieve)',
+    entries: [
+      {
+        title: 'archive.today',
+        description: 'Search the archive for saved snapshots',
+        format: 'https://archive.is/${href}',
+      },
+      {
+        title: 'Internet Archive Wayback Machine',
+        description: 'Digital archive of the World Wide Web',
+        format: 'https://web.archive.org/web/*/${href_noencode}',
+      },
+      {
+        title: 'Google Web cache',
+        description: 'Show you what a web page looked like the last time Google visited it',
+        format: 'https://webcache.googleusercontent.com/search?q=cache:${href}',
+      },
+    ],
+  },
+  {
+    category: 'Web cache (Save)',
+    entries: [
+      {
+        title: 'archive.today',
+        description: 'Take a snapshot of a webpage',
+        format: 'https://archive.is/?run=1&url=${href}',
+      },
+      {
+        title: 'Internet Archive Wayback Machine',
+        description: 'Capture a web page as it appears now',
+        format: 'https://web.archive.org/save/${href_noencode}',
+      },
+    ],
+  },
+  {
+    category: 'Security',
+    entries: [
+      {
+        title: 'Virustotal',
+        description: 'Analyze URLs to detect types of malware',
+        format: 'https://www.virustotal.com/#/domain/${hostname}',
+      },
+      {
+        title: 'CheckPhish',
+        description: 'Detect phishing & fraudulent sites',
+        format: 'https://checkphish.ai/domain/${hostname}',
+      },
+      {
+        title: 'urlscan.io',
+        description: 'Scan and analyse websites',
+        format: 'https://urlscan.io/domain/${hostname}',
+      },
+    ],
+  },
+  {
+    category: 'Whois',
+    entries: [
+      {
+        title: 'DomainWatch',
+        description: 'Whois search including historical records',
+        format: 'https://domainwat.ch/search?type=whois&query=${hostname}',
+      },
+    ],
+  },
+  {
+    category: 'DNS',
+    entries: [
+      {
+        title: 'SecurityTrails',
+        description: 'Current and historical data for IP & DNS',
+        format: 'https://securitytrails.com/domain/${hostname}/dns',
+      },
+    ],
+  },
+  {
+    category: 'Connected Devices',
+    entries: [
+      {
+        title: 'Shodan',
+        description: 'Search engine for Internet-connected devices',
+        format: 'https://www.shodan.io/search?query=${hostname}',
+      },
+      {
+        title: 'Censys',
+        description: 'Discover devices in the cloud, IoT',
+        format: 'https://censys.io/domain?q=${hostname}',
+      },
+    ],
+  },
+];
+
+// Build page and its elements
+const build = function(url) {
+  const main = document.querySelector('main');
+  if (!url) {
+    main.textContent = 'Edit the query at the top of this page. If you have already edit it, please check that it is a host name or a URL.';
+  }
+  else {
+    main.textContent = null;
+
+    const hostname = encodeURIComponent(url.hostname);
+    const href = encodeURIComponent(url.href);
+    const href_noencode = url.href;
+    
+    source.forEach(card => {
+      const section = document.createElement('section');
+
+      const h2 = document.createElement('h2');
+      h2.textContent = card.category;
+
+      const dl = document.createElement('dl');
+
+      card.entries.forEach(entry => {
+        const dt = document.createElement('dt');
+
+        const a = document.createElement('a');
+        a.setAttribute('href', Function('"use strict";return ( (hostname, href, href_noencode) => `' + entry.format + '`);')()(hostname, href, href_noencode));
+        a.textContent = entry.title;
+
+        dt.appendChild(a);
+
+        const dd = document.createElement('dd');
+        dd.textContent = entry.description;
+
+        dl.appendChild(dt);
+        dl.appendChild(dd);
+      });
+
+      section.appendChild(h2);
+      section.appendChild(dl);
+
+      main.appendChild(section);
+    });
+  }
+};
+
+// Parse user query
+const parse_query = function(q) {
+  if (q) {
+    try {
+      if (/^https?:\/\//i.test(q)) {
+        return new URL(q);
+      }
+      else {
+        return new URL(`https://${q}`);
+      }
+    }
+    catch {
+      return null; // query is not a URL-like string
+    }
+  }
+  else {
+    return null; // query is empty
+  }
+};
+
+const handle_query = function() {
+  const query = (new URLSearchParams(window.location.search)).get('q');
+
+  let url;
+  if (query) {
+    url = parse_query(query);
+
+    // set query to input form
+    document.getElementById('query').value = query;
+  }
+
+  build(url);
+};
+const handle_form = function() {
+  const query = document.getElementById('query').value;
+
+  let url;
+  if (query) {
+    url = parse_query(query);
+
+    // set query to location bar
+    const href = new URL(window.location);
+    href.searchParams.set('q', query);
+    window.history.pushState({}, '', href);
+  }
+
+  build(url);
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('query').addEventListener('change', handle_form);
+
+  handle_query(); // build the page
+});
+</script>
+</head>
+<body>
+
+<header>
+  <h1><a href="/">zonewander</a></h1>
+  <input id="query" type="text" placeholder="e.g. google.com, https://en.wikipedia.org/wiki/Web" />
+</header>
+
+<main>Please enable JavaScript...</main>
+
+</body>
+</html>
