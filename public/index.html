@@ -233,6 +233,11 @@ const source = [
         description: 'Scan and analyse websites',
         format: 'https://urlscan.io/domain/${hostname}',
       },
+      {
+        title: 'Threat Crowd',
+        description: 'Find and research artefacts relating to cyber threats',
+        format: 'https://www.threatcrowd.org/pivot.php?data=${hostname}',
+      },
     ],
   },
   {
@@ -282,6 +287,16 @@ const source = [
         title: 'Censys',
         description: 'Discover devices in the cloud',
         format: 'https://search.censys.io/search?resource=hosts&q=${hostname}',
+      },
+      {
+        title: 'Spyse',
+        description: 'Find any Internet asset by digital fingerprints',
+        format: 'https://spyse.com/search?target=domain&query=${hostname}',
+      },
+      {
+        title: 'Intelligence X',
+        description: 'Search engine and data archive',
+        format: 'https://intelx.io/?s=${hostname}',
       },
     ],
   },
