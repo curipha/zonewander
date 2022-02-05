@@ -164,6 +164,11 @@ const source = [
         description: 'Find out the hosting infrastructure and technologies',
         format: 'https://sitereport.netcraft.com/?url=${hostname}',
       },
+      {
+        title: 'DomainWatch',
+        description: 'Investigate website information',
+        format: 'https://domainwat.ch/search?type=site&query=${hostname}',
+      },
     ],
   },
   {
@@ -248,6 +253,16 @@ const source = [
         title: 'DomainWatch',
         description: 'Whois search including historical records',
         format: 'https://domainwat.ch/search?type=whois&query=${hostname}',
+      },
+      {
+        title: 'DomainTools',
+        description: 'Research domain ownership',
+        format: 'https://whois.domaintools.com/${hostname}',
+      },
+      {
+        title: 'JPRS Whois',
+        description: 'Provide information on network administration (.jp domain only)',
+        format: 'https://whois.jprs.jp/?type=DOM&key=${hostname}',
       },
     ],
   },
