@@ -164,6 +164,21 @@ const source = [
         description: 'Find out the hosting infrastructure and technologies',
         format: 'https://sitereport.netcraft.com/?url=${hostname}',
       },
+      {
+        title: 'DNSlytics',
+        description: 'See detailed information about domain name and provider',
+        format: 'https://dnslytics.com/domain/${hostname}',
+      },
+      {
+        title: 'Threat Intelligence Platform',
+        description: 'Provide in-depth insights on host and infrastructure',
+        format: 'https://threatintelligenceplatform.com/report/${hostname}',
+      },
+      {
+        title: 'Cloudflare Radar',
+        description: 'Provide information on Internet activity patterns',
+        format: 'https://radar.cloudflare.com/domains/domain/${hostname}',
+      },
 /*
       {
         title: 'DomainWatch',
@@ -240,6 +255,11 @@ const source = [
         title: 'urlscan.io',
         description: 'Scan and analyse websites',
         format: 'https://urlscan.io/domain/${hostname}',
+      },
+      {
+        title: 'ThreatBook',
+        description: 'Makes a better understanding of threat intelligence',
+        format: 'https://threatbook.io/domain/${hostname}',
       },
 /*
       {
@@ -321,6 +341,16 @@ const source = [
         title: 'Intelligence X',
         description: 'Search engine and data archive',
         format: 'https://intelx.io/?s=${hostname}',
+      },
+      {
+        title: 'grep.app',
+        description: 'Search code from public repositories on GitHub',
+        format: 'https://grep.app/search?q=${hostname}',
+      },
+      {
+        title: 'searchcode',
+        description: 'Simple, comprehensive code search',
+        format: 'https://searchcode.com/?q=${hostname}',
       },
       {
         title: 'Google',
