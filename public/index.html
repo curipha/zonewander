@@ -164,11 +164,13 @@ const source = [
         description: 'Find out the hosting infrastructure and technologies',
         format: 'https://sitereport.netcraft.com/?url=${hostname}',
       },
+/*
       {
         title: 'DomainWatch',
         description: 'Investigate website information',
         format: 'https://domainwat.ch/search?type=site&query=${hostname}',
       },
+*/
     ],
   },
   {
@@ -239,21 +241,25 @@ const source = [
         description: 'Scan and analyse websites',
         format: 'https://urlscan.io/domain/${hostname}',
       },
+/*
       {
         title: 'Threat Crowd',
         description: 'Find and research artefacts relating to cyber threats',
         format: 'https://www.threatcrowd.org/pivot.php?data=${hostname}',
       },
+*/
     ],
   },
   {
     category: 'Whois',
     entries: [
+/*
       {
         title: 'DomainWatch',
         description: 'Whois search including historical records',
         format: 'https://domainwat.ch/search?type=whois&query=${hostname}',
       },
+*/
       {
         title: 'DomainTools',
         description: 'Research domain ownership',
@@ -304,11 +310,13 @@ const source = [
         description: 'Discover devices in the cloud',
         format: 'https://search.censys.io/search?resource=hosts&q=${hostname}',
       },
+/*
       {
         title: 'Spyse',
         description: 'Find any Internet asset by digital fingerprints',
         format: 'https://spyse.com/search?target=domain&query=${hostname}',
       },
+*/
       {
         title: 'Intelligence X',
         description: 'Search engine and data archive',
