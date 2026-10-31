@@ -327,8 +327,6 @@ const build = function(url) {
     main.textContent = 'Edit the query at the top of this page. If you have already edited it, please check that it is a host name or a URL.';
   }
   else {
-    main.textContent = null;
-
     // Do not leak credentials or fragments to third-party services
     url.username = '';
     url.password = '';
@@ -339,6 +337,8 @@ const build = function(url) {
       href: encodeURIComponent(url.href),
       href_noencode: url.href,
     };
+
+    const fragment = document.createDocumentFragment();
 
     source.forEach(card => {
       const section = document.createElement('section');
@@ -368,8 +368,10 @@ const build = function(url) {
       section.appendChild(h2);
       section.appendChild(dl);
 
-      main.appendChild(section);
+      fragment.appendChild(section);
     });
+
+    main.replaceChildren(fragment);
   }
 };
 
