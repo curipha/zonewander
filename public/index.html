@@ -414,6 +414,7 @@ const build = function(url) {
 
 // Parse user query
 const parse_query = function(q) {
+  q = (q || '').trim();
   if (q) {
     try {
       if (/^https?:\/\//i.test(q)) {
@@ -446,7 +447,7 @@ const handle_query = function() {
   build(url);
 };
 const handle_form = function() {
-  const query = document.getElementById('query').value;
+  const query = document.getElementById('query').value.trim();
 
   let url;
   if (query) {
