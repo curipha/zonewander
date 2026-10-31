@@ -367,9 +367,16 @@ const build = function(url) {
   else {
     main.textContent = null;
 
-    const hostname = encodeURIComponent(url.hostname);
-    const href = encodeURIComponent(url.href);
-    const href_noencode = url.href;
+    // Do not leak credentials or fragments to third-party services
+    url.username = '';
+    url.password = '';
+    url.hash = '';
+
+    const vars = {
+      hostname: encodeURIComponent(url.hostname),
+      href: encodeURIComponent(url.href),
+      href_noencode: url.href,
+    };
 
     source.forEach(card => {
       const section = document.createElement('section');
@@ -383,7 +390,7 @@ const build = function(url) {
         const dt = document.createElement('dt');
 
         const a = document.createElement('a');
-        a.href = Function('"use strict";return ((hostname, href, href_noencode) => `' + entry.format + '`);')()(hostname, href, href_noencode);
+        a.href = entry.format.replace(/\$\{(\w+)\}/g, (_, key) => vars[key] ?? '');
         a.textContent = entry.title;
         a.rel = 'noreferrer';
         a.referrerPolicy = 'no-referrer';
