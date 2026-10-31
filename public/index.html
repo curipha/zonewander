@@ -461,6 +461,7 @@ const handle_form = function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('query').addEventListener('change', handle_form);
+  window.addEventListener('popstate', handle_query);
 
   handle_query(); // build the page
 });
