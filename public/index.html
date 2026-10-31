@@ -169,7 +169,7 @@ const source = [
       {
         title: 'DNSlytics',
         description: 'See detailed information about domain name and provider',
-        format: 'https://dnslytics.com/domain/${hostname}',
+        format: 'https://search.dnslytics.com/domain/${hostname}',
       },
       {
         title: 'Threat Intelligence Platform',
@@ -181,13 +181,6 @@ const source = [
         description: 'Provide information on Internet activity patterns',
         format: 'https://radar.cloudflare.com/domains/domain/${hostname}',
       },
-/*
-      {
-        title: 'DomainWatch',
-        description: 'Investigate website information',
-        format: 'https://domainwat.ch/search?type=site&query=${hostname}',
-      },
-*/
     ],
   },
   {
@@ -248,37 +241,16 @@ const source = [
         description: 'Detect phishing & fraudulent sites',
         format: 'https://checkphish.ai/domain/${hostname}',
       },
-/*
-      {
-        title: 'urlscan.io',
-        description: 'Scan and analyse websites',
-        format: 'https://urlscan.io/domain/${hostname}',
-      },
-*/
       {
         title: 'ThreatBook',
         description: 'Makes a better understanding of threat intelligence',
         format: 'https://threatbook.io/domain/${hostname}',
       },
-/*
-      {
-        title: 'Threat Crowd',
-        description: 'Find and research artefacts relating to cyber threats',
-        format: 'https://www.threatcrowd.org/pivot.php?data=${hostname}',
-      },
-*/
     ],
   },
   {
     category: 'Whois',
     entries: [
-/*
-      {
-        title: 'DomainWatch',
-        description: 'Whois search including historical records',
-        format: 'https://domainwat.ch/search?type=whois&query=${hostname}',
-      },
-*/
       {
         title: 'DomainTools',
         description: 'Research domain ownership',
@@ -329,13 +301,6 @@ const source = [
         description: 'Discover devices in the cloud',
         format: 'https://search.censys.io/search?resource=hosts&q=${hostname}',
       },
-/*
-      {
-        title: 'Spyse',
-        description: 'Find any Internet asset by digital fingerprints',
-        format: 'https://spyse.com/search?target=domain&query=${hostname}',
-      },
-*/
       {
         title: 'Intelligence X',
         description: 'Search engine and data archive',
@@ -345,11 +310,6 @@ const source = [
         title: 'grep.app',
         description: 'Search code from public repositories on GitHub',
         format: 'https://grep.app/search?q=${hostname}',
-      },
-      {
-        title: 'searchcode',
-        description: 'Simple, comprehensive code search',
-        format: 'https://searchcode.com/?q=${hostname}',
       },
       {
         title: 'Google',
