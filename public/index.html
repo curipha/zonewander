@@ -434,32 +434,29 @@ const parse_query = function(q) {
 };
 
 const handle_query = function() {
-  const query = (new URLSearchParams(window.location.search)).get('q');
+  const query = (new URLSearchParams(window.location.search)).get('q') || '';
 
-  let url;
-  if (query) {
-    url = parse_query(query);
+  // set query to input form
+  document.getElementById('query').value = query;
 
-    // set query to input form
-    document.getElementById('query').value = query;
-  }
-
-  build(url);
+  build(parse_query(query));
 };
 const handle_form = function() {
   const query = document.getElementById('query').value.trim();
 
-  let url;
+  // set query to location bar
+  const href = new URL(window.location);
   if (query) {
-    url = parse_query(query);
-
-    // set query to location bar
-    const href = new URL(window.location);
     href.searchParams.set('q', query);
+  }
+  else {
+    href.searchParams.delete('q');
+  }
+  if (href.href !== window.location.href) {
     window.history.pushState({}, '', href);
   }
 
-  build(url);
+  build(parse_query(query));
 };
 
 document.addEventListener('DOMContentLoaded', function() {
