@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<meta name="referrer" content="no-referrer" />
 <title>zonewander</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" />
 <style type="text/css">
@@ -393,7 +394,6 @@ const build = function(url) {
         a.href = entry.format.replace(/\$\{(\w+)\}/g, (_, key) => vars[key] ?? '');
         a.textContent = entry.title;
         a.rel = 'noreferrer';
-        a.referrerPolicy = 'no-referrer';
 
         dt.appendChild(a);
 
